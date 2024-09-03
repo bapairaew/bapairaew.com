@@ -1,0 +1,182 @@
+---
+layout: post
+title: Open FPL - an open-source web base FPL tools
+description: Building and designing an open-source web base tools for Fantasy Premier League
+keywords: Fantasy Premier League, Open Source, Chakra UI, Next.js, Vercel
+publishedTime: 2021-07-20T07:39:31.925Z
+---
+
+## Still in the middle of the break
+
+Continuing from [my last post](/posts/003-a-mid-career-break), well, I am still in the middle of the
+break but a lot has changed since then. I got an offer from a Japanese company, whose start date is
+at 1st Septemtber 2021. And, COVID-19 situation in Thailand is getting worse and worse so I am not
+able to travel around anymore. So, this career gap has become bigger than I thought it would be and
+I somehow stuck at home with a lot of "free" time in my hand.
+
+I decided to start learning Japanese because of obvious reasons using
+[Duolingo](https://www.duolingo.com/). I know that there are lot of people are against using this
+app to learn Japanese as there are plenty of "better" resources out there. But I tried a handful of
+them, they seems to be good but it is rather boring so I am afraid that I would give up before I get
+on the wave. So I decided to get with Duolingo as it is a bit more interactive than other options.
+It has been more than a month, and I almost finished all resources there already so I think I will
+write about my experience with it after that.
+
+Learning Japanese does not take 100% for my time so I decided to pick up another project to do.
+Building apps is always something I have fun doing, and I gain so much from open-source community so
+I decided to build an open-source project in the remaining free time I have.
+
+I do have a few ideas but I decided to go with Open FPL, an open-source FPL tools web app since it
+is not too big, rather straightforward, quite extendable, and there does not seem to be much
+open-source FPL projects despite size of the players and other tools available in the market.
+
+## Fantasy Premier League
+
+[Fantasy Premier League](https://fantasy.premierleague.com/) is a free-to-play sport fantasy game
+where its players (will be called managers later to avoid confusiong) are given a certain budget and
+can use it to build their own team using real-life football players in English Premier League.
+Managers are able to transfer in and out anytime but it may come with a cost if you transfers too
+many. Every weeks, managers have to lock in their team lineup and would be awarded with points based
+on real-life players performance in their lineup. The goal is to get the highest points possible at
+the end of seasons which usually starts in August and ends in next year May. There are a few other
+complexity, for example, setting a team captain to earn double the points the players get in that
+gameweek or using chips to get extra points from your bench players.
+
+Ultimately, the challenge of the game is to maximise the limited resources you have, know when to
+transfers out off-form players and transfer in in-form plaayers, know who to captain and know when
+to use the chips for their maximum return.
+
+## Designing Open FPL
+
+So a few things to consider before starting the project: who is the main target, when I want to
+launch, what is my budget to build this.
+
+Once the main audience is known, then I will know what are their use-cases, then their main
+challanges can be listed and I can use those to define the list of features the app needs to have.
+
+Casual players, semi-casual players or hardcore players are three main groups I identified. I assume
+that the basic information provided from the official FPL website would be suffice for the casual
+players and hardcode players would probably want to crunch their own numbers to run their own
+analysis anways. So something inbetween is a sweet spot. The information from the official website
+is not enough yet they still do not want to fully committed to the game. I believe this space has
+the biggest opportunity to be filled.
+
+I do not have the luxury to go around and interviewing people so I decided to just make this tools
+based on my use-cases. I will dogfood this project anyway so I guess this is the most time efficient
+way to get it moving. Once there is some traffic, I will slowly adjust it to fit the mass.
+
+For me the most tiring part of playing FPL is when deciding which players I want to include to my
+team. There are many options and you can easily be overwhelmed if you think about it too much. So to
+decide on a player, I usually look at their form and their next fixtures. If they are in a good form
+then most likely they will continue that until they don't. So what stopped them from playing good?
+One obvious reason is the opponent is too strong. That is why I would choose a player that has been
+performing well and has easier fixtures coming so I don't have to transfer them out.
+
+To do this, you can look the points he has been earning from FPL website and also look at the
+Fixture Difficulty Rating (FDR) for future fixtures. But these can be deceiving.
+
+Some players has been doing well but is not scoring much FPL due to bad luck or other factors. So to
+get over this stats like xG, xA and xGA are very useful. Those are not available on FPL so I would
+need to switching around between websites to complete the picture.
+
+FDR is also too simplistic on FPL since it does not sepearate between attack and defence. Some teams
+are good at attacking but bad at defence, so I would need to able to tell that apart so I can choose
+my attacking players would be able to captitalise on weak defence teams.
+
+Lastly, planning future lineup is very crucial. More often than not you want to invest in players
+that would yield good returns in more than one gameweek so that you would be able to spend your
+transfers elsewhere. FPL does not provide an easy way to do this. What I have been doing were just
+take mental note and just roll with it.
+
+So those are three main things I needed the most. Not too sure if I would be able to do it all or
+not.
+
+So next question is when I want to launch this. Actually, I am in no hurry but it would be nice to
+be able to launch it before the next season begins. So let's just say 31st July which is the hard
+deadline. Which should be more than enough time to solve those three main issues.
+
+Lastly, how much I want to spend on this project. Yea, it is 0. I mean I am building a free tool
+spending my own time already so ideally I would not want to also spend much money on it which would
+make this project very unsustainable.
+
+## Building Open FPL
+
+I was contemplating if I should try [Svelte](https://svelte.dev/) for this project. I did quite a
+fair bit of research but I still do not its eco system is not matured yet. So I have to wait a few
+more years to try it again, unfortunately.
+
+I decided to go back to React again and as a big fan of [Vercel](https://vercel.com/) and
+[Next.js](https://nextjs.org/), it does not take long for me to decide to use them again. Vercel
+free tier is generous and Next.js SSG is something I can see being very useful for this project.
+
+I decided to keep backend and database as small as possible since those are where the cost come
+from. Since I do not own any data as players data and stats are going to be from official FPL
+website and [Understat](https://understat.com/) anyway. To top it off, I decided to save all user
+data inside the browser. This come with a cost of users not being able to sync their data between
+devices and I would not get their emails to do "marketing" stuff. Well, I do not plan to do those
+marketing anyway so let's just try to roll with only local data for now. If the experience is so bad
+then I will have to figure out something later.
+
+I finally get to try [Chakra UI](https://chakra-ui.com/) which I think it is one of the design and
+well-maintained project in this space. It has been in my mind for years but I somehow never got to
+try it in a real project. There are other projects like [Radix UI](https://www.radix-ui.com/) and
+[vanilla-extract](https://github.com/seek-oss/vanilla-extract) but I think the former is not quite
+ready yet while the other one is a lower level solution so I would have to put a lot more effort to
+finish the project.
+
+As mentioned, there was no database, so the architecture was quite different or rather hacky.
+Everything is file-based which is synced once a day. The syncing is triggered by GitHub Actions that
+would make a commit that will subsequently trigger Vercel build which includes data scraping script
+to get the data and build updated pages.
+
+It turned out quite well. The resources being used are very low since users only interact with a few
+static files which are mostly cache-able - HTML, JS, JSON and images. So I think if this keeps up,
+this project is going cost me very little. Great news.
+
+## 1.0.0
+
+Version 1.0.0 pre-release was launched 17th July 2021. I made a
+[Reddit post](https://www.reddit.com/r/FantasyPL/comments/om1fy9/introducing_open_fpl_opensource_web_based_fpl/)
+for it and the actual Version 1.0.0 version was launched also on
+[Twitter](https://twitter.com/openfpl/status/1417110137681027075) on 19th July 2021.
+
+It was quite well recieved on Reddit. People seems to love the clean design, and the
+no-sign-up-no-ads aspect of it. There were a few suggestions made like mobile support and adding
+more stats and only one bug report that is related to an outdated browser. I feel pretty good about
+the feedback from the launch.
+
+However, I have 0 engagement from Twitter. Well, I can totally see that coming since the account has
+no followers. This is a shame since FPL community in FPL is quite big. I do not really know how to
+build up Twitter followers numbers so it will be something I am going to learn next.
+
+## What's next
+
+So there are a few things I plan to do in a few months from now: mobile support, better stats, and
+live architecture.
+
+Mobile support is going to be challenging. I do not really see any other FPL tool UI on mobile that
+I like. I also find the official FPL app is not so nice to use. The screen is too small to see
+things in time efficient manner and they requires too many taps to achieve a task. I will have to do
+a lot of research on this since I do not really want to deliver a subpar UI.
+
+Better stats is another very important thing to do. And actually I also do not know how I should
+approach this since I am not really a well-seasoned FPL player as well. Maybe I will not give too
+much thought on this yet and just use the tool as it is and add in or remove stats as I see fit as
+the game goes on.
+
+Live architecture is about making Open FPL data more up-to-date since in the current architecture
+the users have to wait till next day to get the up-to-date data. I would say this is not a major
+issue in the features Open FPL currently have. But it limits the potential of other tools like Live
+Ranking. So I will to trial-and-error on this. Hopefully, the cost would stay low enough for me to
+be able to afford it.
+
+## Parting notes
+
+I have been very mentally tired lately so I am going to leave this post as it is for now and publish
+it anyway so that I can move on. I will come back edit it soon. So sorry bad this wall of text, my
+poor grammar, mispelling everywhere. :(
+
+Oh, almost forgot to link the project.
+
+- Open FPL website: https://www.openfpl.com
+- GitHub repo: https://github.com/bapairaew/open-fpl

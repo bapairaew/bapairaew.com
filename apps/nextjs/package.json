@@ -1,0 +1,37 @@
+{
+  "name": "nextjs.bapairaew.com",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@vercel/og": "^0.6.2",
+    "clsx": "^2.1.1",
+    "dateformat": "^5.0.3",
+    "framer-motion": "^11.3.30",
+    "next": "14.2.6",
+    "next-mdx-remote": "^5.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-modal-sheet": "^3.1.0",
+    "react-transition-progress": "^0.0.4",
+    "remark-unwrap-images": "^4.0.0",
+    "sharp": "^0.33.5",
+    "tailwindcss": "3.4.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.14",
+    "@types/dateformat": "^5.0.2",
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.4",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.6",
+    "postcss": "^8.4.41",
+    "typescript": "^5.5.4"
+  }
+}

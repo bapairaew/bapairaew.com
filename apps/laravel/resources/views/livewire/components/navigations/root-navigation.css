@@ -1,0 +1,15 @@
+#root-navigation-nav {
+    backdrop-filter: blur(0);
+}
+
+#root-navigation-backdrop {
+    backdrop-filter: blur(0);
+}
+
+#root-navigation-nav.backdrop-blur-md {
+    backdrop-filter: blur(20px);
+}
+
+#root-navigation-backdrop.opacity-80 {
+    opacity: 0.8;
+}

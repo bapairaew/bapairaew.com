@@ -1,0 +1,156 @@
+---
+layout: post
+title: Theme UI and MDX powered personal website
+description: Building a personal website powered by Theme UI and MDX blogging
+keywords: Engineering, Theme UI, MDX, Next.js, personal website
+publishedTime: 2021-02-13T09:57:59.245Z
+modifiedTime: 2022-01-16T05:59:33.343Z
+---
+
+Bulding a personal website is something that has always been at the back of my mind. I have always
+wanted a space where I can curate and share things that I have done, enjoyed and wanted to share
+publicly in the way I wanted.
+
+In a gist, I enjoy building tech stuff, exploring to new places, trying out new food, watching
+movies and anime, reading manga and recently I find joy in reading books which admittedly was not so
+fun for me so I did only when I had to. Anyway, I could have done so using existing services but I
+just do not like that fact that all information is scattered in different places and maintaining it
+is a mini nightmare for me.
+
+I like [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) and I see
+those as my hobby and having them over different places just does not sit right to me. Maybe, this
+is just my software engineering's quirk.
+
+Of course, I do not intend to rebuild every wheels, if there is any service that works well with my
+use case I would use it in some way. Maybe hook up the data from there to this website. We will see
+about that.
+
+## My old website
+
+All of my old website iterations only focus on one thing - tech stuff that I have built. Due to time
+constraint, it was mainly built out of necessity, and that necessity was always applying for a new
+job. So it turned out to be a portfolio website with my CV in it with a twist inside to make a
+little more stand-out.
+
+This is my latest one, let's just call it version one: you can still visit it here:
+https://bapairaew.github.io/ (probably).
+
+This is built with only HTML and CSS or rather [Pug](https://pugjs.org/) and
+[Stylus](https://www.stylus.com/). My context back then was that I found the versions before
+(version zero and its predecessors) was not so intuitive as there was too many animation inside and
+overall aesthetic was off. There was not much thought behind. I do not have the record of it but you
+can imagine a typical CV splited into multiple sections. When you scroll into each section there was
+always animation accompanying you. Over there, you would have to wait for the animation to finish to
+read the content and since there was always something moving, it was too distracting to focus on
+reading. It was dubious but it did land me a job.
+
+There was more thought for the one above. I wanted it to be simple and straightforward. I assume
+that the main users would be recruiters and hiring managers. I learned that they looked for a
+slightly differnt information but both of them looked for the experience and tech stack that I can
+use. So those are shown in no-nonsense way, it probably takes you less than half a minute to know
+where I worked and what tools I used. Hiring managers would be more interested to know more about
+the details of some of the projects so it was not shown only when it was needed through a click.
+
+So that was the general concept. Simple enough. But I need a twist to make it more interesting so I
+opted myself trying to build it without any JavaScript and images. I had seen a lot of those in
+Codepen and Twitter and I did not think it was too complicated to do so.
+
+I was quite happy with the result but still it was not something that I wanted to build.
+
+## My new website
+
+Now I am in transition to a new job which I have not found yet. So I have some time to properly
+build this. Version Two. I looked around in different places -
+[Awwwards](https://www.awwwards.com/), tech people's twitter, software house websites, designer and
+design firm websites, and also corporate websties. There are a lot out there but mostly they are
+either too complicated or too "fancy" to that point that it was not really usable and ultimately
+does not suit my use case.
+
+My intention is to build a personal space which covers the following aspects
+
+- **Projects portfolio** to show case my works I have done
+- **Blog posts** to write my random thought on random things
+- **Photography** to share the photos of the places that I have been
+- **Reviews** to record things that I have consumed (food, places, movies, books, etc)
+
+I like [Shu Ding](https://shud.in/) and [Lee Robinson](https://leerob.io/) website for its
+simplicity which the later has [his website open-sourced](https://github.com/leerob/leerob.io). So I
+took some inspiration from these to build my own.
+
+### Writing
+
+So my portfolio and blog posts need to be written alright. [MDX](https://mdxjs.com/) is my choice
+for this. It is simple and extensible enough to be able to handle whatever idea I can forsee I would
+have thanks to JSX support.
+
+[Theme UI](https://theme-ui.com/) has almost completed out-of-the-box MDX support that I need. The
+gap is filled by [@next/mdx](https://www.npmjs.com/package/@next/mdx),
+[next-mdx-enhanced](https://github.com/hashicorp/next-mdx-enhanced), and
+[next-seo](https://github.com/garmeeh/next-seo). This first one helps me with integration with my
+React Framework choice, [Next.js](https://nextjs.org/). If you have not tried Next.js, go check it
+out. It is awesome. The last two helps with metadata and SEO for each post. SEO is not my priority
+but the fact that I can save all metadata (like title, published data, tags) in one place is great.
+
+This is how a blog post looks like:
+
+```
+---
+layout: layouts/AwesomeLayout
+title: This is the title
+description: This is the description
+keywords: tags, more tags, even more tags
+publishedTime: 2021-02-13T09:57:59.245Z
+---
+
+This is the body.
+
+```
+
+Not sure about you but this looks quite neat to me.
+
+### Photography
+
+Writing/blog is quite straightforward. Everyone is doing it, so, I will have just to follow them.
+But how should I approach photos? I do not really want to have a metadata file to pair with every
+photos that I have. That would be quite painful to maintain. Thankfully, there is this
+[Exif](https://en.wikipedia.org/wiki/Exif) which stores metadata for each photo - camera, lens, date
+time, and even location. This is perfect for me since I only want to show when, where and maybe how
+this photo is taken. I can just show this data! [exifr](https://github.com/MikeKovarik/exifr) can
+help me with extracting the data but unfortunately and exceptedly the location data is saved in
+latitude and longitude so I cannot really get the name of the place without turning this data into a
+place name somehow.
+
+I could use a location-based API for this.
+[Google Place API](https://developers.google.com/places/web-service/overview) could do the job but I
+do not want to overcomplicate things for now since I am still not sure how to store the place data
+properly. Hence, I will just go with manual way.
+[macOS Photos](https://www.apple.com/sg/macos/photos/) app actually shows place name from the
+coordinate data for you. So, for now, I just copy-paste that into `ImageDescription` field so the
+code can just pick up from there. Did not take me that long to do so I am okay with this meanwhile.
+
+## What's next
+
+So I am kind of good with writing and photo bits already so what left is
+movies/books/food/places/etc reviews which I planned to use existing service like
+[IMDB](https://imdb.com/) to do so people can find me from other places as well. But unfortunately,
+their API is quite lacking or not free so I am not sure yet how to go with this yet. Therefore, I
+will just let my future self handle it for now.
+
+Another thing, I want to do is upgrade this website aesthetic. While I am very happy with the
+minimal and clean look-and-feel but it lacks a certain character in it. I think I might be able to
+do better but I do not have any idea how yet. So I will also let this under my future self's care.
+
+## It is open source!
+
+Well, why not, right?
+
+You can have a look at the code here https://github.com/bapairaew/react.bapairaew.com. Any comments
+or feedbacks are always appreciated :).
+
+---
+
+## Update
+
+Actually, I found
+[an unpublished iteration of version one](https://codepen.io/bapairaew/embed/EBWBxp?height=751&theme-id=light&default-tab=result).
+Plenty of (not really working) animations but not as much as version zero.

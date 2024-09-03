@@ -1,0 +1,218 @@
+---
+layout: post
+title: Building a personal website with Svelte and Tailwind
+description: A journey of first time trying to build something with Svelte for the first time
+keywords: Engineering, Tailwind, MDX, Svelte, Vercel, personal website
+publishedTime: 2022-01-13T14:05:15.044Z
+modifiedTime: 2022-01-16T05:59:33.343Z
+---
+
+New year new website!
+
+I have a bit of free time during new year's holiday because I cannot really go anywhere because of
+the pandemic. At first, I wanted to work in [OpenFPL](https://openfpl.com) but I did not really have
+a good idea I wanted to work on at that moment. So I decided to take this chance revisit my personal
+website and learn a new framework instead.
+
+It has been around 7 years since I have started using [React](https://reactjs.org/) exclusively for
+both my personal projects and work projects. A lot of things have changed since the early days but I
+would say the experience has been very great. I tried a few other frameworks like
+[Ember.js](https://emberjs.com/), [Angular](https://angular.io/)(not
+[AngularJS](https://angularjs.org/)), and [Vue.js](https://vuejs.org/) on a smaller project,
+however, I just always came back to React every time because the overall developer experience is
+just simply better and the alternatives' selling points could not really offset it.
+
+React has been criticised a lot due to its poor performance relative to its alternatives. There are
+a few of blogs/websites run
+[performance benchmark](https://blog.openreplay.com/solid-vs-react-the-fastest-vs-the-most-popular-ui-library)
+and React always comes among the last. The number might look convincing but it is left to be
+speculated how much this would mean in real-world applications. The majority of the web applications
+are not that complicated and React has been doing just fine for those in my experience. It struggles
+on the more a more complex applications which would require you to do a fine-grained optimisation
+but that would solve most of the performance issue that I encountered. This train of thought (and
+the existence of [React Native](https://reactnative.dev/)) has been preventing me from adopting any
+other framework fully even though I find a few of them really good (e.g. Vue.js). This is quite
+different from when I moved from [jQuery](https://jquery.com/) to AngularJS and from AngularJS to
+React.
+
+However, for the past few years, there has been a lot of talks about these "modern" framework that
+does not use [Virtual DOM](https://reactjs.org/docs/faq-internals.html) which is the core of React.
+The most notable one is probably
+[Virtual DOM is pure overhead](https://svelte.dev/blog/virtual-dom-is-pure-overhead) by
+[Svelte](https://svelte.dev/) creator, Rich Harris. It has been quite a few years since this blog
+published and Svelte is getting more mature plus
+[Rich Harris recently joined Vercel](https://vercel.com/blog/vercel-welcomes-rich-harris-creator-of-svelte)
+to work on Svelte full-time so seems like the future of Svelte is clearer than ever. This urges me
+to finally give it a try.
+
+It has been almost one year since
+[I rebuilt this personal website](/posts/001-theme-ui-mdx-powered-personal-website) so it comes as a
+easy decision for me to try Svelte out along with revisit this website.
+
+Honestly, I still quite like the current design so there probably won't be ma changes in that
+department so this would be mostly just rebuilding the same thing with a different framework.
+
+## The setup
+
+Last time, I used [Next.js](https://nextjs.org/) as my core framework but, obviously, this is not
+available for Sevelte since it is built around React. Fortunately, Svelte comes with its own build
+framework [SvelteKit](https://kit.svelte.dev/) so this would help a lot with the confuguration and
+build setup.
+
+I used [Theme UI](https://theme-ui.com/) for the UI components library but I found the experience
+was not that great and it is also written in React so this is a good time to go with a different
+one. I have tried [Tailwind CSS](https://tailwindcss.com/) in quite a few smaller projects and I
+have to say composing UI components with it is such a joy. And since there is no complex UI
+components in this website so Tailwind would be an easy choice for this.
+
+Adding Tailwind to SvelteKit is quite simple and it is even easier to just use
+[Svelte Add](https://github.com/svelte-add/svelte-add) to do that. Just run a single command and you
+are ready to go.
+
+For markdown preprocessor part, I use [mdsvex](https://github.com/pngwn/MDsveX) to do the job.
+Actually, I am not sure if there are other alternatives out there but it seems easy to set up with
+Svelte Add so I just go with it.
+
+Another thing that I am trying out with this project is [PnPm](https://pnpm.io/). There is no
+particular reason. I just feel like might as well give it a try.
+
+## The experience
+
+To be honest, I did not learn about Svelte as much as I hoped for. The website is pretty simple and
+I felt I did not touch much of a more complicated part of the framework. But this might be a good
+thing since it showed a sign that as someone who is new to the framework and just make this website
+without getting a headache or two.
+
+Overall, it was a good experience although I am not really a fan of this "template" thing which is a
+similar feeling that I had with AngularJS, and Vue.js. I just prefer the feel of "everything is
+JavaScript" in React more although I understand the downside of it.
+
+I particularly like directive. This brings me back to AngularJS days and this is the biggest I miss
+from those days. It is fun to use and it makes components a lot more flexible. I hope React supports
+this but they probably won't, given how it works under the hood.
+
+There are a few things that I don't like. One example is how-to expose component property. Seems
+like this is being done by export variables inside `<script />` block of the component which is a
+bit confusing at first and quite limiting since you cannot do
+[spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+like you could in React. Also, I have no idea how to expose `class` since it is a reserved name in
+JavaScript 🤔.
+
+Tailwind is still a joy to use. The code looks so much cleaner compared to the last version mainly
+because of Tailwind. Version 3.0 was also just released so this is the first project I tried it with
+that. [Multi Column Layout](https://tailwindcss.com/blog/tailwindcss-v3#multi-column-layout) and
+[Aspect Ratio](https://tailwindcss.com/blog/tailwindcss-v3#modern-aspect-ratio-api) are super useful
+and is just there exactly when I need it haha.
+
+SvelteKit comes with some quirks. It seems prerendered pages are defined by crawling from the entry
+page. This means if there are routes that are not accessible through `<a href>`, `<img src>` or
+`<img srcset>` from the crawling, it won't be prerendered at all. This causes an issue on
+[my photography page](/photography) since it showed blurred images from a custom route first which
+is defined by a custom property that won't be caught from the crawler. My workaround for this was
+just to attach hidden images link to those blurred image routes which is not too ugly. So there is
+no big deal.
+
+## The sacrifice
+
+Because a few features in Next.js/Vercel are not available so there are a few sacrifices I have to
+make.
+
+The first one is ISR. Basically, the website won't be regenerating pages from the data source on the
+fly anymore. I will need to redeploy from Vercel Dashboard to get those pages updated. But given how
+often I update the content currently, this should be fine.
+
+Also, there is no simple way to create a Lambda on Vercel through SvelteKit as far as I know. So
+dynamic og-images feature has to be replaced as well. Now they are just the same static image. Not
+as cool as before but I can live with it.
+
+There is also no [next/image](https://nextjs.org/docs/api-reference/next/image) to help me optimise
+the website's images. So I have to do it myself by providing a blurred image route for preloaded
+images and a resized image route for thumbnail images.
+
+Lastly, the build time is 4x slower. Due to all routes having to be prerendered - this includes
+blurred image routes and resized image routes which take the majority of the time. This could be
+solved by caching these images somewhere so they won't have to be regenerated every time would
+decrease the build time by a lot. But then again the current build time is 8 minutes for a
+not-so-frequently updated website, I guess this is good enough.
+
+## The comparison
+
+So here is the performance from Lighthouse on the landing page:
+
+![Svelte version performance](/images/posts/006/svelte-perf.png)
+
+![React version performance](/images/posts/006/react-perf.png)
+
+Svelte wins here. The score might be pretty code but I have to admit that I can feel that Svelte is
+noticeably faster even though I have been quite biased toward React.
+
+Svelte's bundle size is also a lot smaller 34kb vs 151kb in React version. 5x smaller!
+
+But please do keep in mind that React version uses a UI component library but Svelte version does
+not. So this comparison is by no means fair. The actual difference in both bundle size and
+performance might be a lot closer if they both use Tailwind.
+
+## The what's new
+
+Apart from rebuilding the same thing I also take this chance to sneak in a few "improvements".
+
+Honestly, I still really like the current design for its simplicity, robustness, and practicality
+although there were a few feedbacks that it looks too plain. Some even questioned if this is the
+final version. So in order to make it a bit more lively, I added fancy gradient background on the
+splash screen. The colors are heavily inspired by [Linear](https://linear.app/).
+
+Since I move to Tailwind so I add iOS-esque blurred background header which is super simple to do by
+just adding `backdrop-blur` class. I also add D A R K M O D E because it is so simple to do in
+Tailwind. I think I change less than 20 lines of code to support it. Awesome!
+
+Last but not least, this website is also now written in TypeScript!
+
+## The conclusion
+
+I like the overall experience so far. Will definitely keep an eye out for Svelte and keep this
+website as a testing ground. But I will still continue using React for a bigger projects. The
+ecosystem in React is not a few level above currently. It might still take years for Svelte to catch
+up.
+
+---
+
+## Update
+
+I had more fun than I thought working with Svelte so I decided to spend a bit more time for some
+improvement here and there in the weekend.
+
+The main improvement is images optimisation. Prior to this, there were two custom routes to resize
+images and make placeholder images using [sharp](https://github.com/lovell/sharp).
+
+Resizing images is straightforward as it just resizes images for thumbnails which could be extended
+for doing some `srcset` which is not implemented in this website yet.
+
+Placeholder images are not as simple. At first, it was another custom route but the performance does
+not improvement much since it would still require requests to server to get those images. So I tried
+to embed [data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+instead so that the visitors and see the placeholders immediately.
+
+I tried to put the implementation in `Image.svelte` component itself but it did not really work
+since preload data asynchronously does not really work with prerendering. So I ended up just
+generate data URL for placeholders in JSON file instead. This way the component knows about the
+placeholder before it renders.
+
+There is another quirk I found. is it seems routes in `.svx` do not get prerender. This means both
+prerendered resized images and placeholder images do not work with the contents in [/posts](/posts)
+and [/projects](/projects).
+
+This ended up forcing me to manually resize the image and write a
+[remark](https://github.com/remarkjs/remark) plugin to generate placeholder's data URL. The
+implementation was not pretty since I have to append the generate URL to `title` field of the image
+since I do not know how to set custom attributes. I am still very new with `remark`, so maybe if I
+found a better solution I will make an update on that.
+
+Another improvement that I made was page transitioning which was a lot simpler to do compared to
+React. No additional package is required and the API is simple, I guess that is the benefit of being
+an actual framework and not just a UI library. However, the transition somehow does not work all the
+time in mobile devices. I am not sure why yet but since there is only few visitors coming from
+mobile anyway so I decided to leave it as it is for now.
+
+---
+
+Source code: https://github.com/bapairaew/svelte.bapairaew.com

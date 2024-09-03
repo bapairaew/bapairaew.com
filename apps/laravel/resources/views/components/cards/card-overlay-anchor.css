@@ -1,0 +1,3 @@
+.card dialog:not([open]) .card-dialog-content {
+    display: none;
+}

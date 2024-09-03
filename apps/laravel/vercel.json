@@ -1,0 +1,36 @@
+{
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.7.1"
+        }
+    },
+    "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "build/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "favicon.ico"
+        },
+        { "src": "/(.*)", "dest": "/api/index.php" }
+    ],
+    "env": {
+        "APP_NAME": "laravel",
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://laravel.bapairaew.com",
+        "ASSET_URL": "https://laravel.bapairaew.com",
+        "CACHE_DRIVER": "array",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "array",
+        "NODE_PATH": "node",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "SSR_TEMP_PATH": "/tmp/ssr"
+    }
+}

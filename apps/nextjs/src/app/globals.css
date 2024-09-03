@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+  @apply underline;
+}
+
+a[target="_blank"]::after {
+  content: " ↗";
+}
+
+body {
+  @apply bg-white text-black dark:bg-black dark:text-white;
+}
+
+.react-modal-sheet-container {
+  @apply bg-white text-black dark:bg-neutral-800 dark:text-white !important;
+}
