@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { getPosts } from "~/utils/data/posts";
+import { getPosts } from "~/utils/data/data";
 import dateformat from "dateformat";
 
 const props = defineProps<{
   slug: string;
 }>();
 
-const [post] = await getPosts(props.slug);
+const [post] = await getPosts({ slug: props.slug });
 
 useHead({
   title: post.title,

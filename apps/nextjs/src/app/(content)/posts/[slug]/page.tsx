@@ -1,5 +1,5 @@
 import PostContent from "@/components/contents/posts/PostContent";
-import { getPosts } from "@/libs/data/posts";
+import { getPosts } from "@/libs/data/data";
 import { Metadata } from "next";
 import { Link } from "react-transition-progress/next";
 
@@ -8,7 +8,7 @@ type Props = { params: { slug: string } };
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata | null> {
-  const [post] = await getPosts(slug);
+  const [post] = await getPosts({ slug });
 
   if (!post) return null;
 

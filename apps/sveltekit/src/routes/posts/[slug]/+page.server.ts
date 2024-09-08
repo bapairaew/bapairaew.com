@@ -1,9 +1,9 @@
-import { getPosts } from '$lib/data/posts';
+import { getPosts } from '$lib/data/data';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const [post] = await getPosts(params.slug);
+	const [post] = await getPosts({ slug: params.slug });
 	if (post) {
 		return { post };
 	} else {

@@ -1,9 +1,9 @@
-import { getProjects } from '$lib/data/projects';
+import { getProjects } from '$lib/data/data';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const [project] = await getProjects(params.slug);
+	const [project] = await getProjects({ slug: params.slug });
 	if (project) {
 		return { project };
 	} else {

@@ -1,9 +1,9 @@
 import ProjectCard from "./ProjectCard";
-import { getProjects } from "@/libs/data/projects";
+import { getProjects } from "@/libs/data/data";
 import { Link } from "react-transition-progress/next";
 
 export default async function ProjectsSection() {
-  const projects = (await getProjects()).slice(0, 8);
+  const projects = await getProjects({ count: 8 });
 
   return (
     <section className="container mx-auto px-2 py-8">

@@ -1,9 +1,9 @@
 import MDXContent from "@/components/mdx/MDXContent";
-import { getProjects } from "@/libs/data/projects";
+import { getProjects } from "@/libs/data/data";
 import { notFound } from "next/navigation";
 
 export default async function ProjectContent({ slug }: { slug: string }) {
-  const [project] = await getProjects(slug);
+  const [project] = await getProjects({ slug });
   if (!project) return notFound();
 
   const tagsMap = project.tags.reduce((map, tag) => {

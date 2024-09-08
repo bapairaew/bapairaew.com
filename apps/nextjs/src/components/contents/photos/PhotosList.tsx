@@ -1,5 +1,5 @@
 import PhotoCard from "./PhotoCard";
-import { getPhotos } from "@/libs/data/photos";
+import { getPhotos } from "@/libs/data/data";
 
 export default async function PhotosList() {
   const photos = await getPhotos();

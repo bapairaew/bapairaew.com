@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getPosts } from "~/utils/data/posts";
+import { getPosts } from "~/utils/data/data";
 
 const posts = await getPosts();
 </script>

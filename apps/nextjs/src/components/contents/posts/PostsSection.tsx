@@ -1,9 +1,9 @@
-import { getPosts } from "@/libs/data/posts";
+import { getPosts } from "@/libs/data/data";
 import { Link } from "react-transition-progress/next";
 import PostCard from "./PostCard";
 
 export default async function PostsSection() {
-  const posts = (await getPosts()).slice(0, 6);
+  const posts = await getPosts({ count: 6 });
 
   return (
     <section className="container mx-auto px-2 py-8">

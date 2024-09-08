@@ -1,5 +1,5 @@
 import ProjectCard from "@/components/contents/projects/ProjectCard";
-import { getProjects } from "@/libs/data/projects";
+import { getProjects } from "@/libs/data/data";
 
 export default async function ProjectsList() {
   const projects = await getProjects();

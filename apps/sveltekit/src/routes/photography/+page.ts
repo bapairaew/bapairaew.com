@@ -1,4 +1,4 @@
-import { getPhotos } from '$lib/data/photos';
+import { getPhotos } from '$lib/data/data';
 
 export const load = async () => {
 	return { photos: getPhotos() };

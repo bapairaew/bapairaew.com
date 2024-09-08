@@ -1,10 +1,10 @@
 import MDXContent from "@/components/mdx/MDXContent";
-import { getPosts } from "@/libs/data/posts";
+import { getPosts } from "@/libs/data/data";
 import dateformat from "dateformat";
 import { notFound } from "next/navigation";
 
 export default async function PostContent({ slug }: { slug: string }) {
-  const [post] = await getPosts(slug);
+  const [post] = await getPosts({ slug });
   if (!post) return notFound();
   return (
     <div className="prose lg:prose-md dark:prose-invert mx-auto">

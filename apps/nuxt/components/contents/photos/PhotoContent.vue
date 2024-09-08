@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getPhotos } from "~/utils/data/photos";
+import { getPhotos } from "~/utils/data/data";
 import dateformat from "dateformat";
 import { getRemoteImagePath } from "~/utils/data/image";
 
@@ -7,7 +7,7 @@ const props = defineProps<{
   slug: string;
 }>();
 
-const [photo] = await getPhotos(props.slug);
+const [photo] = await getPhotos({ slug: props.slug });
 
 useHead({
   title: photo.place,

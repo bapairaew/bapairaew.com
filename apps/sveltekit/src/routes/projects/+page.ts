@@ -1,4 +1,4 @@
-import { getProjects } from '$lib/data/projects';
+import { getProjects } from '$lib/data/data';
 
 export const load = async () => {
 	return { projects: getProjects() };

@@ -1,11 +1,11 @@
 import { FilledImage } from "@/components/images/FilledImage";
 import { getRemoteImagePath } from "@/libs/data/image";
-import { getPhotos } from "@/libs/data/photos";
+import { getPhotos } from "@/libs/data/data";
 import dateformat from "dateformat";
 import { notFound } from "next/navigation";
 
 export default async function PhotoContent({ slug }: { slug: string }) {
-  const [photo] = await getPhotos(slug);
+  const [photo] = await getPhotos({ slug });
   if (!photo) return notFound();
 
   return (

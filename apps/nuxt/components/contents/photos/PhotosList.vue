@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getPhotos } from "~/utils/data/photos";
+import { getPhotos } from "~/utils/data/data";
 
 const photos = await getPhotos();
 </script>

@@ -1,9 +1,9 @@
-import { getPhotos } from "@/libs/data/photos";
+import { getPhotos } from "@/libs/data/data";
 import { Link } from "react-transition-progress/next";
 import PhotoCard from "./PhotoCard";
 
 export default async function PhotosSection() {
-  const photos = (await getPhotos()).slice(0, 8);
+  const photos = await getPhotos({ count: 8 });
 
   return (
     <section className="container mx-auto px-2 py-8">

@@ -1,5 +1,5 @@
 import ProjectContent from "@/components/contents/projects/ProjectContent";
-import { getProjects } from "@/libs/data/projects";
+import { getProjects } from "@/libs/data/data";
 import { Metadata } from "next";
 import { Link } from "react-transition-progress/next";
 
@@ -8,7 +8,7 @@ type Props = { params: { slug: string } };
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata | null> {
-  const [project] = await getProjects(slug);
+  const [project] = await getProjects({ slug });
 
   if (!project) return null;
 

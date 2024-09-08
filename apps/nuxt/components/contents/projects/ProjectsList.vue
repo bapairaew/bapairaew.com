@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getProjects } from "~/utils/data/projects";
+import { getProjects } from "~/utils/data/data";
 
 const projects = await getProjects();
 </script>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { getProjects } from "~/utils/data/projects";
+import { getProjects } from "~/utils/data/data";
 
 const props = defineProps<{
   slug: string;
 }>();
 
-const [project] = await getProjects(props.slug);
+const [project] = await getProjects({ slug: props.slug });
 
 const tagsMap = project.tags.reduce(
   (map, tag) => {

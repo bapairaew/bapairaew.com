@@ -1,5 +1,5 @@
 import PhotoContent from "@/components/contents/photos/PhotoContent";
-import { getPhotos } from "@/libs/data/photos";
+import { getPhotos } from "@/libs/data/data";
 import dateformat from "dateformat";
 import { Metadata } from "next";
 import { Link } from "react-transition-progress/next";
@@ -9,7 +9,7 @@ type Props = { params: { slug: string } };
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata | null> {
-  const [photo] = await getPhotos(slug);
+  const [photo] = await getPhotos({ slug });
 
   if (!photo) return null;
 

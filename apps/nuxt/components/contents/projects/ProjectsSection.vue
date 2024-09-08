@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getProjects } from "~/utils/data/projects";
+import { getProjects } from "~/utils/data/data";
 
-const projects = (await getProjects()).slice(0, 8);
+const projects = await getProjects({ count: 8 });
 </script>
 
 <template>

@@ -27,6 +27,7 @@ export const get = async <T extends Params>(request: Request, data: T[]) => {
   const url = new URL(request.url);
   const params = new URLSearchParams(url.search);
   const slug = params.get("slug");
+  const count = params.get("count");
 
   if (slug) {
     const match = data.find((p) => p.slug === slug);
@@ -36,5 +37,6 @@ export const get = async <T extends Params>(request: Request, data: T[]) => {
     return notFound();
   }
 
-  return NextResponse.json(data, { headers });
+  const limit = count ? parseInt(count, 10) : 500;
+  return NextResponse.json(data.slice(0, limit), { headers });
 };

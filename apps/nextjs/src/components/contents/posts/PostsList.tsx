@@ -1,4 +1,4 @@
-import { getPosts } from "@/libs/data/posts";
+import { getPosts } from "@/libs/data/data";
 import PostCard from "./PostCard";
 
 export default async function PostsList() {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getPhotos } from "~/utils/data/photos";
+import { getPhotos } from "~/utils/data/data";
 
-const photos = (await getPhotos()).slice(0, 8);
+const photos = await getPhotos({ count: 8 });
 </script>
 
 <template>
