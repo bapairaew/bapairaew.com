@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Photo } from "~/utils/data/photos";
+import type { Photo } from "~/utils/data/data";
 import dateformat from "dateformat";
 import { getRemoteImagePath } from "~/utils/data/image";
 
