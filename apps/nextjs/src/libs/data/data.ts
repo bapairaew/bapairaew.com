@@ -39,18 +39,14 @@ export type Post = {
 };
 
 export const getPhotos = async (options?: Options) => {
-  const res = await fetch(getURL("photos", options), {
-    cache: "no-cache",
-  });
+  const res = await fetch(getURL("photos", options), { next: { revalidate } });
   if (!res.ok) return [];
   const data: Photo[] = await res.json();
   return data;
 };
 
 export const getPosts = async (options?: Options) => {
-  const res = await fetch(getURL("posts", options), {
-    cache: "no-cache",
-  });
+  const res = await fetch(getURL("posts", options), { next: { revalidate } });
   if (!res.ok) return [];
   const data: Post[] = await res.json();
   return data;
@@ -58,7 +54,7 @@ export const getPosts = async (options?: Options) => {
 
 export const getProjects = async (options?: Options) => {
   const res = await fetch(getURL("projects", options), {
-    cache: "no-cache",
+    next: { revalidate },
   });
   if (!res.ok) return [];
   const data: Project[] = await res.json();
