@@ -1,6 +1,6 @@
 import Card, { CardProps } from "@/components/cards/Card";
 import CardOverlayAnchor from "@/components/cards/CardOverlayAnchor";
-import { Post } from "@/libs/data/posts";
+import { Post } from "@/libs/data/data";
 import dateformat from "dateformat";
 
 type PostCardProps = CardProps & {

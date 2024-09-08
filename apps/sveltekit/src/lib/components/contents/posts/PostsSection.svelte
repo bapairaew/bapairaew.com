@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Post } from '$lib/data/posts';
+	import type { Post } from '$lib/data/data';
 	import PostCard from '$lib/components/contents/posts/PostCard.svelte';
 	import PostCardLoading from './PostCardLoading.svelte';
 

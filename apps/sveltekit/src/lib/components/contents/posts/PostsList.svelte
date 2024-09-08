@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PostCard from '$lib/components/contents/posts/PostCard.svelte';
-	import type { Post } from '$lib/data/posts';
+	import type { Post } from '$lib/data/data';
 	import PostCardLoading from './PostCardLoading.svelte';
 	export let posts: Promise<Post[]>;
 </script>

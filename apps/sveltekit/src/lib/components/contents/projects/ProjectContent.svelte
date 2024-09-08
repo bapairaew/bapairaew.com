@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MDXContent from '$lib/components/mdx/MDXContent.svelte';
-	import type { Project } from '$lib/data/projects';
+	import type { Project } from '$lib/data/data';
 
 	export let project: Project;
 

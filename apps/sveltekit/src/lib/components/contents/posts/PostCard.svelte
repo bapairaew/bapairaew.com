@@ -2,7 +2,7 @@
 	import Card from '$lib/components/cards/Card.svelte';
 	import CardOverlayAnchor from '$lib/components/cards/CardOverlayAnchor.svelte';
 	import PostContent from '$lib/components/contents/posts/PostContent.svelte';
-	import type { Post } from '$lib/data/posts';
+	import type { Post } from '$lib/data/data';
 	import dateformat from 'dateformat';
 	export let post: Post;
 </script>

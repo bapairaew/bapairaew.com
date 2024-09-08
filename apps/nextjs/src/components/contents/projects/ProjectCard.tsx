@@ -1,4 +1,4 @@
-import { Project } from "@/libs/data/projects";
+import { Project } from "@/libs/data/data";
 import Card, { CardProps } from "@/components/cards/Card";
 import CardOverlayAnchor from "@/components/cards/CardOverlayAnchor";
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import FilledImage from '$lib/components/images/FilledImage.svelte';
 	import { getRemoteImagePath } from '$lib/data/image';
-	import type { Photo } from '$lib/data/photos';
+	import type { Photo } from '$lib/data/data';
 	import dateformat from 'dateformat';
 
 	export let photo: Photo;

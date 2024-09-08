@@ -2,8 +2,7 @@
 	import Card from '$lib/components/cards/Card.svelte';
 	import CardOverlayAnchor from '$lib/components/cards/CardOverlayAnchor.svelte';
 	import ProjectContent from '$lib/components/contents/projects/ProjectContent.svelte';
-	import BottomSheet from '$lib/components/modal/BottomSheet.svelte';
-	import type { Project } from '$lib/data/projects';
+	import type { Project } from '$lib/data/data';
 
 	export let project: Project;
 	const href = `/projects/${project.slug}`;

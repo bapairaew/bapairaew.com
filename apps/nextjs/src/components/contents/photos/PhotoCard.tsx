@@ -2,7 +2,7 @@ import Card, { CardProps } from "@/components/cards/Card";
 import CardOverlayAnchor from "@/components/cards/CardOverlayAnchor";
 import { FilledImage } from "@/components/images/FilledImage";
 import { getRemoteImagePath } from "@/libs/data/image";
-import { Photo } from "@/libs/data/photos";
+import { Photo } from "@/libs/data/data";
 import dateformat from "dateformat";
 
 type PhotoCardProps = CardProps & {

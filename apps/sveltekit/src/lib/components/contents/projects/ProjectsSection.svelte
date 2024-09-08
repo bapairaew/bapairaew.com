@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ProjectCard from '$lib/components/contents/projects/ProjectCard.svelte';
-	import type { Project } from '$lib/data/projects';
+	import type { Project } from '$lib/data/data';
 	import ProjectCardLoading from './ProjectCardLoading.svelte';
 	export let projects: Promise<Project[]>;
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Photo } from '$lib/data/photos';
+	import type { Photo } from '$lib/data/data';
 	import PhotoCard from './PhotoCard.svelte';
 	import PhotoCardLoading from './PhotoCardLoading.svelte';
 

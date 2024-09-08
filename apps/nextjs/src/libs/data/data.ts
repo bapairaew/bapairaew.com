@@ -40,7 +40,7 @@ export type Post = {
 
 export const getPhotos = async (options?: Options) => {
   const res = await fetch(getURL("photos", options), {
-    next: { revalidate },
+    cache: "no-cache",
   });
   if (!res.ok) return [];
   const data: Photo[] = await res.json();
@@ -48,7 +48,9 @@ export const getPhotos = async (options?: Options) => {
 };
 
 export const getPosts = async (options?: Options) => {
-  const res = await fetch(getURL("posts", options), { next: { revalidate } });
+  const res = await fetch(getURL("posts", options), {
+    cache: "no-cache",
+  });
   if (!res.ok) return [];
   const data: Post[] = await res.json();
   return data;
@@ -56,7 +58,7 @@ export const getPosts = async (options?: Options) => {
 
 export const getProjects = async (options?: Options) => {
   const res = await fetch(getURL("projects", options), {
-    next: { revalidate },
+    cache: "no-cache",
   });
   if (!res.ok) return [];
   const data: Project[] = await res.json();

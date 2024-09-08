@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MDXContent from '$lib/components/mdx/MDXContent.svelte';
-	import type { Post } from '$lib/data/posts';
+	import type { Post } from '$lib/data/data';
 	import dateformat from 'dateformat';
 
 	export let post: Post;

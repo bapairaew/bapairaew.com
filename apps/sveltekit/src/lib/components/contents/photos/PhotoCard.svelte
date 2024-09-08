@@ -2,7 +2,7 @@
 	import Card from '$lib/components/cards/Card.svelte';
 	import CardOverlayAnchor from '$lib/components/cards/CardOverlayAnchor.svelte';
 	import FilledImage from '$lib/components/images/FilledImage.svelte';
-	import type { Photo } from '$lib/data/photos';
+	import type { Photo } from '$lib/data/data';
 	import dateformat from 'dateformat';
 	import PhotoContent from './PhotoContent.svelte';
 	import { getRemoteImagePath } from '$lib/data/image';
